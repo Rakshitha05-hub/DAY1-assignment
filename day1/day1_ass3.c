@@ -33,11 +33,7 @@ int main()
         {
             total_price += 100;
         }
-        else
-        {
-            printf("Invalid vehicle type: %c\n", type[i]);
-            return 1;
-        }
+       
     }
 
     printf("Total toll collection: %.2f\n", total_price);
