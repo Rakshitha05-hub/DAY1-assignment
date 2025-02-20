@@ -1,5 +1,7 @@
 #include<stdio.h>
-struct Employee_t{
+#include<string.h>
+struct Employee_t
+{
     int id;
     char name[255];
     float salary;
@@ -8,25 +10,51 @@ struct Employee_t{
 typedef struct Employee_t Employee;
 void readEmployees(Employee emp[],int n);
 void displayEmployees(Employee emp[],int n);
-Employee findHighestSalary(Employee emp[],int n);
+Employee findhighestSalary(Employee emp[],int n);
 
-int main(){
-    int empcount;
-    printf("enter number of employee");
-    scanf("%d",&empcount);
-    Employee employees[1000];
-    readEmployees(employees,empcount);
-    displayEmployees(employees,empcount);
-    Employee highestSalariedEmployee = findHighestSalary(employees,empcount);
-    printf("employee with highest salary:%s,%.2f(%s)\n",highestSalariedEmployee.name, highestSalariedEmployee.salary, highestSalariedEmployee.department);
+int main()
+{
+    int employeecount;
+    printf("Enter number of employee:");
+    scanf("%d",&employeecount);
+    Employee employees[100];
+    readEmployees(employees,employeecount);
+    displayEmployees(employees,employeecount);
+    Employee highestsalariedEmployee=findhighestSalary(employees,employeecount);
+    printf("\nEmployee with highest salary:%s,%.2f(%s)\n",highestsalariedEmployee.name,highestsalariedEmployee.salary,highestsalariedEmployee.department);
     return 0;
+   
 }
-void readEmployees(Employee emp[],int n){
-    
+void readEmployees(Employee emp[], int n)
+{
+    for (int i = 0; i < n; i++) {
+        printf("Enter details for employee %d:\n", i + 1);
+        printf("ID: ");
+        scanf("%d", &emp[i].id);
+        printf("Name: ");
+        scanf("%s",emp[i].name);
+        printf("Salary: ");
+        scanf("%f", &emp[i].salary);
+        printf("Department: ");
+        scanf("%s",emp[i].department);
+    }
 }
-void displayEmployees(Employee emp[],int n){
-    
+
+void displayEmployees(Employee emp[], int n) {
+    printf("\nEmployee Details:\n");
+    printf("ID\tName\tSalary\t\tDepartment\n");
+    printf("---------------------------------------------\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d\t%s\t\t%.2f\t%s\n", emp[i].id, emp[i].name, emp[i].salary, emp[i].department);
+    }
 }
-Employee findHighestSalary(Employee emp[],int n){
-    
+
+Employee findhighestSalary(Employee emp[], int n) {
+    Employee highest = emp[0];
+    for (int i = 1; i < n; i++) {
+        if (emp[i].salary > highest.salary) {
+            highest = emp[i];
+        }
+    }
+    return highest;
 }
