@@ -49,7 +49,9 @@ int main() {
                 break;
             default:
                 printf("Invalid choice\n");
+                break;
         }
+        break;
     } while (choice >= 1 && choice <= 3);
 
     return 0;
